@@ -1,7 +1,6 @@
-import { ContainerStyles, FormStyles } from './styles/addStyles';
-import { Wrapper } from './styles/styles';
+import { ContainerStyles, FormStyles, Wrapper } from '../../component';
 
-import { Button, Container, TextField, Typography, MenuItem, Select, InputLabel, FormControl, Fab, SelectChangeEvent } from '@mui/material';
+import { Button, Container, TextField, Typography, MenuItem, Select, InputLabel, FormControl } from '@mui/material';
 import axios from 'axios';
 import { Form, Formik } from 'formik';
 import { string, object } from 'yup'
@@ -18,13 +17,8 @@ const schema = object().shape({
   gender: string().required('Insert gender'),
 })
 
-const voltar = () => {
-  const { pathname } = Router;
-  if (pathname === '/people/add') Router.back()
-}
-
 const HomePage = () => {
-  const handleSubmit = async (values) => {
+  const handleSubmit = async (values: People) => {
     const data = await axios.post('http://localhost:3000/api/people/add', values, {
       headers: {
         'Accept': 'application/json, text/plain',
@@ -43,6 +37,7 @@ const HomePage = () => {
           <Formik
             initialValues={{name: '', gender: ''}}
             onSubmit={handleSubmit}
+            validationSchema={schema}
           >
             {({errors, values, handleChange}) => (
             <Form encType="multipart/form-data">
@@ -74,16 +69,16 @@ const HomePage = () => {
                   </Select>
                 </FormControl>
                 <Button variant="contained" type="submit" size="medium" sx={{ m: 2, minWidth: 80 }}>
-                  Enviar
+                  Submit
                 </Button>
               </FormStyles>
             </Form>
             )}
           </Formik>
-          <Fab variant="extended" color="primary" aria-label="add" onClick={voltar}>
-            <ArrowBack />
-            Voltar
-          </Fab>
+          <Button variant="contained" href='/people'>
+          <ArrowBack />
+            Back
+          </Button>
         </ContainerStyles>
       </Container>
     </Wrapper>

@@ -1,18 +1,9 @@
-import { Wrapper } from './styles/styles';
+import { Wrapper, TwoButtons, ListStyles } from '../../component';
 import { PeopleInterface } from 'data';
 
 import axios from 'axios';
-import Container from '@mui/material/Container'
-import AddIcon from '@mui/icons-material/Add';
-import { List, ListItemText, Typography, Button, Fab } from '@mui/material';
-import Router from 'next/router';
-import { ListStyles } from './styles/indexStyles';
-
-const Add = () => {
-  const { pathname } = Router;
-  if (pathname === '/people') Router.push('people/add')
-}
-
+import { ArrowBack, Add } from '@mui/icons-material';
+import { List, ListItemText, Typography, Button, Container } from '@mui/material';
 
 const HomePage = ({ people_data }) => (
   <Wrapper>
@@ -26,17 +17,23 @@ const HomePage = ({ people_data }) => (
             people_data.map((people: PeopleInterface) => (<ListItemText key={people.id} primary={`key= ${people.id} name= ${people.name}`} />))
           }
         </List>
-        <Fab variant="extended" color="primary" aria-label="add" onClick={Add}>
-          <AddIcon sx={{ mr: 1 }} />
-          Add people
-        </Fab>
+        <TwoButtons>
+          <Button variant="contained" href='/'>
+            <ArrowBack />
+            Back
+          </Button>
+          <Button variant="contained" href='/people/add'>
+            <Add sx={{ mr: 1 }} />
+            Add people
+          </Button>
+        </TwoButtons>
       </ListStyles>
     </Container>
   </Wrapper>
 );
 
 HomePage.getInitialProps = async () => {
-  const response = await axios.get('http://localhost:3000/api/people/peoples')
+  const response = await axios.get('http://localhost:3000/api/people/getAll')
 
   return { people_data: response.data }
 }
