@@ -5,5 +5,4 @@ export const ListStyles = styled('div')({
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  marginTop: '9vw'
 });

@@ -9,15 +9,15 @@ const HomePage = ({ people_data }) => (
   <Wrapper>
     <Container>
       <ListStyles>
-        <Typography variant='h2'>
+        <Typography variant='h2' marginTop='50px'>
           People list
         </Typography>
-        <List>
+        <List sx={{ marginTop: 10 }}>
           {
             people_data.map((people: PeopleInterface) => (<ListItemText key={people.id} primary={`key= ${people.id} name= ${people.name}`} />))
           }
         </List>
-        <TwoButtons>
+        <TwoButtons sx={{ marginTop: 15 }}>
           <Button variant="contained" href='/'>
             <ArrowBack />
             Back
