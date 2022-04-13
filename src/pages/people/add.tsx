@@ -1,11 +1,9 @@
 import { ContainerStyles, FormStyles, Wrapper } from '../../component';
 
 import { Button, Container, TextField, Typography, MenuItem, Select, InputLabel, FormControl } from '@mui/material';
-import axios from 'axios';
+import ArrowBack from '@mui/icons-material/ArrowBack';
 import { Form, Formik } from 'formik';
 import { string, object } from 'yup'
-import { ArrowBack } from '@mui/icons-material';
-import Router from 'next/router';
 
 type People = {
   name: string;
@@ -19,12 +17,13 @@ const schema = object().shape({
 
 const HomePage = () => {
   const handleSubmit = async (values: People) => {
-    const data = await axios.post('http://localhost:3000/api/people/add', values, {
-      headers: {
-        'Accept': 'application/json, text/plain',
-        'Content-Type': 'multipart/form-data, application/json',
-      }
+    const peoples = JSON.parse(localStorage.getItem('People'));
+    peoples.push({
+      id: (peoples.length + 1).toString(),
+      name: values.name,
+      gender: values.gender,
     })
+    localStorage.setItem('People', JSON.stringify(peoples));
   }
 
   return (

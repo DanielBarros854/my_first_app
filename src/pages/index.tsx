@@ -1,12 +1,11 @@
 import { Wrapper, Page, TwoButtons } from "../component";
 import { Container, Typography, Button } from "@mui/material";
-import Link from "next/link";
 
-const HomePage = ({ people_data }) => (
+const HomePage = () => (
   <Wrapper>
     <Container maxWidth="lg">
       <Page>
-        <Typography variant="h2" color="initial" marginTop='50px'>
+        <Typography variant="h2" marginTop='50px'>
           Hello World with Next.js!
         </Typography>
         <TwoButtons>
@@ -14,13 +13,15 @@ const HomePage = ({ people_data }) => (
           sx={{ fontSize: 20 }}
           color="primary"
           href='/people'
+          variant="contained"
         >
           People
         </Button>
         <Button
           sx={{ fontSize: 20 }}
-          color="primary"
           href='/about'
+          color="primary"
+          variant="contained"
         >
           About
         </Button>
@@ -31,19 +32,3 @@ const HomePage = ({ people_data }) => (
 );
 
 export default HomePage
-
-{/* <div className='container'>
-<h1>Hello World with Next.js!</h1>
-<ul>
-  <li>
-    <Link href='/people'>
-    <a>People</a>
-    </Link>
-  </li>
-  <li>
-    <Link href='/about'>
-    <a>About</a>
-    </Link>
-  </li>
-</ul>
-</div> */}
