@@ -34,48 +34,48 @@ const HomePage = () => {
             People add
           </Typography>
           <Formik
-            initialValues={{name: '', gender: ''}}
+            initialValues={{ name: '', gender: '' }}
             onSubmit={handleSubmit}
             validationSchema={schema}
           >
-            {({errors, values, handleChange}) => (
-            <Form encType="multipart/form-data">
-              <FormStyles>
-                <TextField
-                  id="name"
-                  name="name"
-                  label="Name"
-                  margin="normal"
-                  type="text"
-                  onChange={handleChange}
-                  helperText={errors.name}
-                  required
-                  sx={{ m: 1, minWidth: 120 }}
-                />
-                <FormControl sx={{ m: 1, minWidth: 120 }} required>
-                  <InputLabel id="select-label">Gender</InputLabel>
-                  <Select
-                    id="gender"
-                    label="Gender"
-                    name="gender"
-                    value={values.gender}
+            {({ errors, values, handleChange }) => (
+              <Form encType="multipart/form-data">
+                <FormStyles>
+                  <TextField
+                    id="name"
+                    name="name"
+                    label="Name"
+                    margin="normal"
+                    type="text"
                     onChange={handleChange}
+                    helperText={errors.name}
                     required
-                  >
-                    <MenuItem key='Male' value="Male">Male</MenuItem>
-                    <MenuItem key='Female' value="Female">Female</MenuItem>
-                    <MenuItem key='Other' value="Other">Other</MenuItem>
-                  </Select>
-                </FormControl>
-                <Button variant="contained" type="submit" size="medium" sx={{ m: 2, minWidth: 80 }}>
-                  Submit
-                </Button>
-              </FormStyles>
-            </Form>
+                    sx={{ m: 1, minWidth: 120 }}
+                  />
+                  <FormControl sx={{ m: 1, minWidth: 120 }} required>
+                    <InputLabel id="select-label">Gender</InputLabel>
+                    <Select
+                      id="gender"
+                      label="Gender"
+                      name="gender"
+                      value={values.gender}
+                      onChange={handleChange}
+                      required
+                    >
+                      <MenuItem key='Male' value="Male">Male</MenuItem>
+                      <MenuItem key='Female' value="Female">Female</MenuItem>
+                      <MenuItem key='Other' value="Other">Other</MenuItem>
+                    </Select>
+                  </FormControl>
+                  <Button variant="contained" type="submit" size="medium" sx={{ m: 2, minWidth: 80 }}>
+                    Submit
+                  </Button>
+                </FormStyles>
+              </Form>
             )}
           </Formik>
           <Button variant="contained" href='/people'>
-          <ArrowBack />
+            <ArrowBack />
             Back
           </Button>
         </ContainerStyles>
